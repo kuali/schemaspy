@@ -1138,6 +1138,26 @@ public class Config
     }
 
     /**
+     * Set the format to use for the -Tpng[:renderer[:formatter]] dot option as specified
+     * at <a href='http://www.graphviz.org/doc/info/command.html'>
+     * http://www.graphviz.org/doc/info/command.html</a>.<p>
+     * Examples of this would be png, svg, gif and so on.
+     *
+     * This is required for: http://sourceforge.net/p/schemaspy/bugs/174/
+     */
+    public void setFormat(String format) {
+        Dot.getInstance().setFormat(format);
+    }
+
+    public String getFormat() {
+        String format = pullParam("-format");
+        if (format != null)
+            setFormat(format);
+
+        return Dot.getInstance().getFormat();
+    }
+
+    /**
      * Set the renderer to use for the -Tpng[:renderer[:formatter]] dot option as specified
      * at <a href='http://www.graphviz.org/doc/info/command.html'>
      * http://www.graphviz.org/doc/info/command.html</a>.<p>
@@ -1760,6 +1780,8 @@ public class Config
         isLowQuality();     // query to set renderer correctly
         params.add("-renderer");  // instead of -hq and/or -lq
         params.add(getRenderer());
+        params.add("-format");
+        params.add(getFormat());
         value = getDescription();
         if (value != null) {
             params.add("-desc");
