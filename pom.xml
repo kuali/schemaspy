@@ -32,6 +32,7 @@
   </parent>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <maven-s3-wagon.version>1.2.1</maven-s3-wagon.version>
   </properties>
   <licenses>
     <license>
@@ -46,6 +47,47 @@
     <url>https://github.com/kualico/schemaspy/tree/${project.scm.tag}</url>
     <tag>master</tag>
   </scm>
+
+    <repositories>
+        <!--rSmart Nexus -->
+        <repository>
+            <id>rsmart-dev</id>
+            <name>rsmart-dev</name>
+            <url>https://nexus.rsmart.com/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>kuali.nexus</id>
+            <name>Nexus Repository Manager</name>
+            <url>http://nexus.kuali.org/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+  <!-- rSmart-Nexus -->
+  <distributionManagement>
+    <snapshotRepository>
+      <id>rsmart.snapshot.repo</id>
+      <name>rsmart snapshot repository</name>
+      <url>s3://rsmart-dev/artifacts/maven/snapshot</url>
+    </snapshotRepository>
+    <repository>
+      <id>rsmart.release.repo</id>
+      <name>rsmart release repository</name>
+      <url>s3://rsmart-dev/artifacts/maven/release</url>
+    </repository>
+  </distributionManagement>
+
   <developers>
     <developer>
       <id>john.currier</id>
@@ -106,6 +148,13 @@
         </configuration>
       </plugin>
     </plugins>
+      <extensions>
+          <extension>
+              <groupId>org.kuali.maven.wagons</groupId>
+              <artifactId>maven-s3-wagon</artifactId>
+              <version>${maven-s3-wagon.version}</version>
+          </extension>
+      </extensions>
   </build>
   <dependencies>
     <dependency>
