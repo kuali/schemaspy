@@ -1,0 +1,16 @@
+**/.project
+**/.classpath
+**/.settings
+**/target
+**/.idea
+**/SchemaSpy.iml
+**/.DS_Store
+**/Thumbs.db
+bin
+.project
+.classpath
+.settings
+target
+.idea
+SchemaSpy.iml
+**/bin
