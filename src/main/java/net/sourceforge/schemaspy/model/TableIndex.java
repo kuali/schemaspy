@@ -119,7 +119,7 @@ public class TableIndex implements Comparable<TableIndex> {
     }
 
     /**
-     * @param object
+     * @param other
      * @return
      */
     @Override
