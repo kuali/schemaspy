@@ -168,7 +168,7 @@ public class Table implements Comparable<Table> {
     }
 
     /**
-     * @param rs ResultSet from {@link DatabaseMetaData#getImportedKeys(String, String, String)}
+     * rs ResultSet from {@link DatabaseMetaData#getImportedKeys(String, String, String)}
      * rs.getString("FK_NAME");
      * rs.getString("FKCOLUMN_NAME");
      * rs.getString("PKTABLE_CAT");
@@ -176,7 +176,6 @@ public class Table implements Comparable<Table> {
      * rs.getString("PKTABLE_NAME");
      * rs.getString("PKCOLUMN_NAME");
      * @param tables Map
-     * @param db
      * @throws SQLException
      */
     protected void addForeignKey(String fkName, String fkColName,
@@ -683,8 +682,10 @@ public class Table implements Comparable<Table> {
     }
 
     /**
-     * Returns <code>true</code> if this table references no other tables..<p/>
+     * Returns <code>true</code> if this table references no other tables.
+     * <p>
      * Used in dependency analysis.
+     * </p>
      * @return
      */
     public boolean isRoot() {
@@ -698,8 +699,10 @@ public class Table implements Comparable<Table> {
     }
 
     /**
-     * Returns <code>true</code> if this table is referenced by no other tables.<p/>
+     * Returns <code>true</code> if this table is referenced by no other tables.
+     * <p>
      * Used in dependency analysis.
+     * </p>
      * @return
      */
     public boolean isLeaf() {
@@ -904,7 +907,7 @@ public class Table implements Comparable<Table> {
     /**
      * Remove one foreign key constraint.
      *
-     * <p/>Used during dependency analysis phase.
+     * <p>Used during dependency analysis phase.</p>
      *
      * @return
      */
@@ -997,9 +1000,7 @@ public class Table implements Comparable<Table> {
      *
      * returns -1 if unable to successfully fetch the row count
      *
-     * @param db Database
-     * @return int
-     * @throws SQLException
+     * @return long
      */
     protected long fetchNumRows() {
         if (isView() || isRemote())
@@ -1123,7 +1124,7 @@ public class Table implements Comparable<Table> {
     }
 
     /**
-     * Same as {@link #connectForeignKeys(Map, Database, Properties)},
+     * Same as {@link #connectForeignKeys(Map)},
      * but uses XML-based metadata
      *
      * @param tableMeta
@@ -1213,12 +1214,12 @@ public class Table implements Comparable<Table> {
 
     /**
      * Compare this table to another table.
-     * Results are based on 1: identity, 2: table name, 3: schema name<p/>
-     *
+     * Results are based on 1: identity, 2: table name, 3: schema name
+     * <p>
      * This implementation was put in place to deal with analyzing multiple
      * schemas that contain identically named tables.
-     *
-     * @see {@link Comparable#compareTo(Object)}
+     * </p>
+     * @see Comparable#compareTo(Object)
      */
     public int compareTo(Table other) {
         if (other == this)  // fast way out

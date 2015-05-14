@@ -141,7 +141,7 @@ public class Config
      * Construct a configuration from an array of options (e.g. from a command
      * line interface).
      *
-     * @param options
+     * @param argv
      */
     public Config(String[] argv)
     {
@@ -239,12 +239,7 @@ public class Config
 
     /**
      * Return the path to Graphviz (used to find the dot executable to run to
-     * generate ER diagrams).<p/>
-     *
-     * Returns {@link #getDefaultGraphvizPath()} if a specific Graphviz path
-     * was not specified.
-     *
-     * @return
+     * generate ER diagrams).
      */
     public File getGraphvizDir() {
         if (graphvizDir == null) {
@@ -795,10 +790,10 @@ public class Config
 
     /**
      * If enabled we'll attempt to query/render the number of rows that
-     * each table contains.<p/>
-     *
+     * each table contains.
+     * <p>
      * Defaults to <code>true</code> (enabled).
-     *
+     * </p>
      * @param enabled
      */
     public void setNumRowsEnabled(boolean enabled) {
@@ -817,10 +812,10 @@ public class Config
     }
 
     /**
-     * If enabled we'll include views in the analysis.<p/>
-     *
+     * If enabled we'll include views in the analysis.
+     * <p>
      * Defaults to <code>true</code> (enabled).
-     *
+     * </p>
      * @param enabled
      */
     public void setViewsEnabled(boolean enabled) {
@@ -840,8 +835,10 @@ public class Config
 
     /**
      * Returns <code>true</code> if metering should be embedded in
-     * the generated pages.<p/>
+     * the generated pages.
+     * <p>
      * Defaults to <code>false</code> (disabled).
+     * </p>
      * @return
      */
     public boolean isMeterEnabled() {
@@ -883,7 +880,7 @@ public class Config
      * Set the columns to exclude from relationship diagrams where the specified
      * columns aren't directly referenced by the focal table.
      *
-     * @param columnExclusions regular expression of the columns to
+     * @param fullColumnExclusions regular expression of the columns to
      *        exclude
      */
     public void setIndirectColumnExclusions(String fullColumnExclusions) {
@@ -942,7 +939,7 @@ public class Config
 
     /**
      * Set the tables to exclude as a regular expression
-     * @param tableInclusions
+     * @param tableExclusions
      */
     public void setTableExclusions(String tableExclusions) {
         this.tableExclusions = Pattern.compile(tableExclusions);
@@ -997,10 +994,12 @@ public class Config
 
     /**
      * Set the name of the {@link SqlFormatter SQL formatter} class to use to
-     * format SQL into HTML.<p/>
+     * format SQL into HTML.
+     * <p>
      * The implementation of the class must be made available to the class
      * loader, typically by specifying the path to its jar with <em>-dp</em>
      * ({@link #setDriverPath(String)}).
+     * </p>
      */
     public void setSqlFormatter(String formatterClassName) {
         sqlFormatterClass = formatterClassName;
@@ -1232,7 +1231,8 @@ public class Config
     }
 
     /**
-     * Set the level of logging to perform.<p/>
+     * Set the level of logging to perform.
+     * <p>
      * The levels in descending order are:
      * <ul>
      *  <li><code>severe</code> (highest - least detail)
@@ -1243,7 +1243,7 @@ public class Config
      *  <li><code>finer</code>
      *  <li><code>finest</code>  (lowest - most detail)
      * </ul>
-     *
+     * </p>
      * @param logLevel
      */
     public void setLogLevel(String logLevel) {
@@ -1314,7 +1314,7 @@ public class Config
     }
 
     /**
-     * @see #setHasOrphans()
+     * @see #setHasOrphans(boolean)
      *
      * @return
      */
@@ -1330,7 +1330,7 @@ public class Config
     }
 
     /**
-     * @see #setHasRoutines()
+     * @see #setHasRoutines(boolean)
      *
      * @return
      */
@@ -1358,8 +1358,6 @@ public class Config
 
     /**
      * Determines the database properties associated with the specified type.
-     * A call to {@link #setDbProperties(Properties)} is expected after determining
-     * the complete set of properties.
      *
      * @param type
      * @return

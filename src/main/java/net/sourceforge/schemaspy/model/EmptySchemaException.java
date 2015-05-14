@@ -26,11 +26,6 @@ package net.sourceforge.schemaspy.model;
 public class EmptySchemaException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * When a message is sufficient
-     *
-     * @param msg
-     */
     public EmptySchemaException() {
         super();
     }
