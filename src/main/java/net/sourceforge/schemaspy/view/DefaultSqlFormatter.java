@@ -155,7 +155,6 @@ public class DefaultSqlFormatter implements SqlFormatter {
      * keyed by several possible ways to refer to the table.
      *
      * @param tables
-     * @param dbName
      * @return
      */
     protected Map<String, Table> getTableMap(Collection<? extends Table> tables) {

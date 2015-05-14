@@ -52,8 +52,6 @@ public class RemoteTable extends Table {
     /**
      * Connect to the PK's referenced by this table that live in the original schema
      * @param tables
-     * @param excludeIndirectColumns
-     * @param excludeColumns
      * @throws SQLException
      */
     @Override

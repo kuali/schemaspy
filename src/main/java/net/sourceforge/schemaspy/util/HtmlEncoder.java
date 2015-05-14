@@ -51,7 +51,7 @@ public class HtmlEncoder {
 
     /**
      * Returns an HTML-encoded equivalent of the specified tokenized string,
-     * where tokens such as '<', '>', '\n' and '\r' have been isolated from
+     * where tokens such as '&lt;', '&gt;', '\n' and '\r' have been isolated from
      * other tokens.
      *
      * @param str
