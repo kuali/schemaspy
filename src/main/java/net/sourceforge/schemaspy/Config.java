@@ -1232,7 +1232,6 @@ public class Config
 
     /**
      * Set the level of logging to perform.
-     * <p>
      * The levels in descending order are:
      * <ul>
      *  <li><code>severe</code> (highest - least detail)
@@ -1243,7 +1242,6 @@ public class Config
      *  <li><code>finer</code>
      *  <li><code>finest</code>  (lowest - most detail)
      * </ul>
-     * </p>
      * @param logLevel
      */
     public void setLogLevel(String logLevel) {
