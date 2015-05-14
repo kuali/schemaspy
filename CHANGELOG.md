@@ -1,5 +1,9 @@
 
 
+##schemaspy-1505.3
+* Fix javadoc for Java 8's strict javadoc tool
+  * Travis Schneberger on Thu, 14 May 2015 10:37:11 -0400 [View Commit](../../commit/e75336465e8206c79c5ea31ffbf18502bc916127)
+
 ##schemaspy-1505.2
 * Move to Java 8
   * Travis Schneberger on Thu, 14 May 2015 08:00:11 -0400 [View Commit](../../commit/e7b46f215fefe2dc7607144c858612f22bc305e9)
