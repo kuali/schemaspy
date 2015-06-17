@@ -75,6 +75,9 @@ public class HtmlMultipleSchemasIndexPage extends HtmlFormatter {
         html.write("  <link rel=stylesheet href='");
         html.write(aSchema);
         html.writeln("/schemaSpy.css' type='text/css'>");
+        html.write("  <link rel=stylesheet href='");
+        html.write(aSchema);
+        html.writeln("/schemaSpy-print.css' type='text/css'>");
         html.writeln("  <meta HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=" + Config.getInstance().getCharset() + "'>");
         html.writeln("</head>");
         html.writeln("<body>");

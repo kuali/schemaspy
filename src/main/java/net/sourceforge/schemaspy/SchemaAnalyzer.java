@@ -260,6 +260,7 @@ public class SchemaAnalyzer {
                 ImageWriter.getInstance().writeImages(outputDir);
                 ResourceWriter.getInstance().writeResource("/jquery.js", new File(outputDir, "/jquery.js"));
                 ResourceWriter.getInstance().writeResource("/schemaSpy.js", new File(outputDir, "/schemaSpy.js"));
+                ResourceWriter.getInstance().writeResource("/schemaSpy-print.css", new File(outputDir, "/schemaSpy-print.css"));
 
                 progressListener.graphingSummaryProgressed();
 

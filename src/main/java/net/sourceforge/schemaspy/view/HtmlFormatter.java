@@ -54,6 +54,10 @@ public class HtmlFormatter {
         if (table != null)
             out.write("../");
         out.writeln("schemaSpy.css' type='text/css'>");
+        out.write("  <link rel=stylesheet href='");
+        if (table != null)
+            out.write("../");
+        out.writeln("schemaSpy-print.css' type='text/css'>");
         out.writeln("  <meta HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=" + Config.getInstance().getCharset() + "'>");
         out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript' SRC='" + (table == null ? "" : "../") + "jquery.js'></SCRIPT>");
         out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript' SRC='" + (table == null ? "" : "../") + "schemaSpy.js'></SCRIPT>");

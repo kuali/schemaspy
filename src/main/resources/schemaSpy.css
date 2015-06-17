@@ -217,7 +217,6 @@ div.spacer {
 #header {
   float:left;
   width: 100%;
-  background:#BED1B8 url("images/background.gif") repeat-x bottom;
   font-size:80%;
   line-height:normal;
 }
@@ -230,7 +229,7 @@ div.spacer {
 
 #header li {
   float:left;
-  background:url("images/tabLeft.gif") no-repeat left top;
+  -webkit-border-radius: 10px 10px 0px 0px;-moz-border-radius: 10px 10px 0px 0px;border-radius: 10px 10px 0px 0px;border:1px solid #FFFFFF;
   margin:0;
   padding:0 0 0 9px;
   border-bottom:1px solid #000;
@@ -240,11 +239,10 @@ div.spacer {
   float:left;
   display:block;
   width:.1em;
-  background:url("images/tabRight.gif") no-repeat right top;
   padding:5px 10px 4px 1px;
   text-decoration:none;
   font-weight:bold;
-  color:#F4F7DA;
+  color: #000000;
 }
 
 #header > ul a {width:auto;}
