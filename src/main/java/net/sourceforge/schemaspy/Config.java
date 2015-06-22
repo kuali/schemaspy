@@ -119,6 +119,7 @@ public class Config
     private boolean hasOrphans = false;
     private boolean hasRoutines = false;
     private boolean populating = false;
+    private Boolean showAnomalies;
     private List<String> columnDetails;
     public static final String DOT_CHARSET = "UTF-8";
     private static final String ESCAPED_EQUALS = "\\=";
@@ -786,6 +787,22 @@ public class Config
             encodeCommentsEnabled = !options.remove("-ahic");
 
         return encodeCommentsEnabled;
+    }
+
+
+    /**
+     * Show DB structure anomalies. Defautls to false.
+     */
+    public void setAnomaliesEnabled(boolean enabled) {
+        showAnomalies = enabled;
+    }
+
+    public boolean isAnomaliesEnabled() {
+        if (showAnomalies == null)
+            showAnomalies = !options.remove("-showanomalies");
+
+        return showAnomalies;
+
     }
 
     /**
@@ -1756,6 +1773,8 @@ public class Config
             params.add("-sso");
         if (isSchemaDisabled())
             params.add("-noschema");
+        if(isAnomaliesEnabled())
+            params.add("-showanomalies");
 
         String value = getDriverPath();
         if (value != null) {
