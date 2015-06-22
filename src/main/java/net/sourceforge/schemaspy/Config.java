@@ -791,7 +791,7 @@ public class Config
 
 
     /**
-     * Show DB structure anomalies. Defautls to false.
+     * Show DB structure anomalies. Defaults to false.
      */
     public void setAnomaliesEnabled(boolean enabled) {
         showAnomalies = enabled;
