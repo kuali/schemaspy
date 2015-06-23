@@ -168,8 +168,8 @@ public class HtmlColumnsPage extends HtmlFormatter {
         html.writeln("<p>");
         html.writeln("<form name='options' action=''>");
         if (Config.getInstance().getColumnDetails().contains("comments"))
-            html.writeln(" <label for='showComments'><input type=checkbox id='showComments'>Comments</label>");
-        html.writeln(" <label for='showLegend'><input type=checkbox checked id='showLegend'>Legend</label>");
+            html.writeln(" <input type=checkbox id='showComments'><label for='showComments'>Comments</label>");
+        html.writeln(" <input type=checkbox checked id='showLegend'><label for='showLegend'>Legend</label>");
         html.writeln("</form>");
         html.writeln("</table>");
 

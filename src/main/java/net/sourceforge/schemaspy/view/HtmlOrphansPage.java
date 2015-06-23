@@ -114,7 +114,7 @@ public class HtmlOrphansPage extends HtmlDiagramFormatter {
         html.writeln("<tr><td class='container' align='left' valign='top'>");
         if (hasImpliedRelationships) {
             html.writeln("<form action=''>");
-            html.writeln(" <label for='removeImpliedOrphans'><input type=checkbox id='removeImpliedOrphans'>");
+            html.writeln(" <input type=checkbox id='removeImpliedOrphans'><label for='removeImpliedOrphans'>");
             html.writeln("  Hide tables with implied relationships</label>");
             html.writeln("</form>");
         }
