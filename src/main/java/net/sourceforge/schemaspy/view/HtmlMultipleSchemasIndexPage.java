@@ -63,7 +63,8 @@ public class HtmlMultipleSchemasIndexPage extends HtmlFormatter {
     private void writeHeader(String databaseName, DatabaseMetaData meta, int numberOfSchemas, boolean showIds, String aSchema, LineWriter html) throws IOException {
         String connectTime = new SimpleDateFormat("EEE MMM dd HH:mm z yyyy").format(new Date());
 
-        html.writeln("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>");
+        html.writeln("<!DOCTYPE html>");
+        html.writeln("<!--[if IE 9]><html class=\"lt-ie10\" lang=\"en\" > <![endif]-->");
         html.writeln("<html>");
         html.writeln("<head>");
         html.write("  <title>SchemaSpy Analysis");
@@ -72,13 +73,25 @@ public class HtmlMultipleSchemasIndexPage extends HtmlFormatter {
             html.write(databaseName);
         }
         html.writeln("</title>");
+
         html.write("  <link rel=stylesheet href='");
         html.write(aSchema);
         html.writeln("/schemaSpy.css' type='text/css'>");
+
         html.write("  <link rel=stylesheet href='");
         html.write(aSchema);
         html.writeln("/schemaSpy-print.css' type='text/css'>");
+
+        html.write("  <link rel=stylesheet href='");
+        html.write(aSchema);
+        html.writeln("/css/normalize.css' type='text/css'>");
+
+        html.write("  <link rel=stylesheet href='");
+        html.write(aSchema);
+        html.writeln("/css/foundation.css' type='text/css'>");
+
         html.writeln("  <meta HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=" + Config.getInstance().getCharset() + "'>");
+        html.writeln("  <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
         html.writeln("</head>");
         html.writeln("<body>");
         writeTableOfContents(html);

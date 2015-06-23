@@ -44,24 +44,40 @@ public class HtmlFormatter {
     }
 
     protected void writeHeader(Database db, Table table, String text, List<String> javascript, LineWriter out) throws IOException {
-        out.writeln("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>");
+        out.writeln("<!DOCTYPE html>");
+        out.writeln("<!--[if IE 9]><html class=\"lt-ie10\" lang=\"en\" > <![endif]-->");
         out.writeln("<html>");
         out.writeln("<head>");
         out.writeln("  <!-- SchemaSpy rev " + new Revision() + " -->");
         out.write("  <title>SchemaSpy - ");
         out.write(getDescription(db, table, text, false));
         out.writeln("</title>");
+
         out.write("  <link rel=stylesheet href='");
         if (table != null)
             out.write("../");
         out.writeln("schemaSpy.css' type='text/css'>");
+
         out.write("  <link rel=stylesheet href='");
         if (table != null)
             out.write("../");
         out.writeln("schemaSpy-print.css' type='text/css'>");
+
+        out.write("  <link rel=stylesheet href='");
+        if (table != null)
+            out.write("../");
+        out.writeln("css/normalize.css' type='text/css'>");
+
+        out.write("  <link rel=stylesheet href='");
+        if (table != null)
+            out.write("../");
+        out.writeln("css/foundation.css' type='text/css'>");
+
         out.writeln("  <meta HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=" + Config.getInstance().getCharset() + "'>");
-        out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript' SRC='" + (table == null ? "" : "../") + "jquery.js'></SCRIPT>");
-        out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript' SRC='" + (table == null ? "" : "../") + "schemaSpy.js'></SCRIPT>");
+        out.writeln("  <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
+        out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript' SRC='" + (table == null ? "" : "../") + "js/vendor/jquery.js'></SCRIPT>");
+        out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript' SRC='" + (table == null ? "" : "../") + "js/schemaspy/schemaSpy.js'></SCRIPT>");
+        out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript' SRC='http://code.jquery.com/jquery-migrate-1.2.1.js'></SCRIPT>");
         if (table != null) {
             out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript'>");
             out.writeln("    table='" + table + "';");

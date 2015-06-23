@@ -114,10 +114,10 @@ public class HtmlTablePage extends HtmlFormatter {
             }
         }
 
-        html.writeln(" <label for='showRelatedCols'><input type=checkbox id='showRelatedCols'>Related columns</label>");
-        html.writeln(" <label for='showConstNames'><input type=checkbox id='showConstNames'>Constraints</label>");
-        html.writeln(" <label for='showComments'><input type=checkbox " + (showCommentsInitially  ? "checked " : "") + "id='showComments'>Comments</label>");
-        html.writeln(" <label for='showLegend'><input type=checkbox checked id='showLegend'>Legend</label>");
+        html.writeln("<input type=checkbox id='showRelatedCols'> <label for='showRelatedCols'>Related columns</label>");
+        html.writeln(" <input type=checkbox id='showConstNames'> <label for='showConstNames'>Constraints</label>");
+        html.writeln(" <input type=checkbox " + (showCommentsInitially  ? "checked " : "") + "id='showComments'><label for='showComments'>Comments</label>");
+        html.writeln(" <input type=checkbox checked id='showLegend'><label for='showLegend'>Legend</label>");
         html.writeln("</form>");
     }
 
