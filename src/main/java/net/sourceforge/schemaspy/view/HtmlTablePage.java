@@ -343,7 +343,7 @@ public class HtmlTablePage extends HtmlFormatter {
         if (indexes != null && !indexes.isEmpty()) {
             out.writeln("<div class='indent'>");
             out.writeln("<b>Indexes:</b>");
-            out.writeln("<table class='dataTable' border='1' rules='groups'><colgroup><colgroup><colgroup><colgroup>" + (showId ? "<colgroup>" : ""));
+            out.writeln("<table class='dataTable' rules='groups'><colgroup><colgroup><colgroup><colgroup>" + (showId ? "<colgroup>" : ""));
             out.writeln("<thead>");
             out.writeln(" <tr>");
             if (showId)

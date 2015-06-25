@@ -1,6 +1,6 @@
 @media print {
   /* Hide the tab bar for print */
-  table#headerHolder {
+  table#headerHolder, nav {
     display: none;
   }
 
@@ -14,4 +14,11 @@
     display: none;
   }
 
+  footer {
+    display: none;
+  }
+
+  .detail {
+    padding: 0px 4px;
+  }
 }
