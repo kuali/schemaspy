@@ -67,7 +67,7 @@ public class HtmlMultipleSchemasIndexPage extends HtmlFormatter {
         html.writeln("<!--[if IE 9]><html class=\"lt-ie10\" lang=\"en\" > <![endif]-->");
         html.writeln("<html>");
         html.writeln("<head>");
-        html.write("  <title>SchemaSpy Analysis");
+        html.write("  <title>Database Analysis");
         if (databaseName != null) {
             html.write(" of Database ");
             html.write(databaseName);

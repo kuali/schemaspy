@@ -120,6 +120,7 @@ public class Config
     private boolean hasRoutines = false;
     private boolean populating = false;
     private Boolean showAnomalies;
+    private Boolean showDBName;
     private List<String> columnDetails;
     public static final String DOT_CHARSET = "UTF-8";
     private static final String ESCAPED_EQUALS = "\\=";
@@ -802,6 +803,21 @@ public class Config
             showAnomalies = !options.remove("-showanomalies");
 
         return showAnomalies;
+
+    }
+
+    /**
+     * Show the database name in descriptions/titles. Defaults to false.
+     */
+    public void setDBNameEnabled(boolean enabled) {
+        showDBName = enabled;
+    }
+
+    public boolean isDBNameEnabled() {
+        if (showDBName == null)
+            showDBName = !options.remove("-showdbname");
+
+        return showDBName;
 
     }
 
@@ -1775,6 +1791,8 @@ public class Config
             params.add("-noschema");
         if(isAnomaliesEnabled())
             params.add("-showanomalies");
+        if(isDBNameEnabled())
+            params.add("-showdbname");
 
         String value = getDriverPath();
         if (value != null) {

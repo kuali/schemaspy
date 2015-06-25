@@ -39,6 +39,7 @@ public class HtmlFormatter {
     protected final boolean showAnomalies = Config.getInstance().isAnomaliesEnabled();
     private   final boolean isMetered = Config.getInstance().isMeterEnabled();
     protected final boolean displayNumRows = Config.getInstance().isNumRowsEnabled();
+    protected final boolean showDBName = Config.getInstance().isDBNameEnabled();
 
     protected HtmlFormatter() {
     }
@@ -49,7 +50,7 @@ public class HtmlFormatter {
         out.writeln("<html>");
         out.writeln("<head>");
         out.writeln("  <!-- SchemaSpy rev " + new Revision() + " -->");
-        out.write("  <title>SchemaSpy - ");
+        out.write("  <title>");
         out.write(getDescription(db, table, text, false));
         out.writeln("</title>");
 
@@ -165,13 +166,17 @@ public class HtmlFormatter {
             else
                 description.append("Table ");
         }
-        if (hoverHelp)
-            description.append("<span title='Database'>");
-        description.append(db.getName());
-        if (hoverHelp)
-            description.append("</span>");
+        if(showDBName) {
+          if (hoverHelp)
+              description.append("<span title='Database'>");
+          description.append(db.getName());
+          if (hoverHelp)
+              description.append("</span>");
+        }
+
         if (db.getSchema() != null) {
-            description.append('.');
+            if(showDBName)
+                description.append('.');
             if (hoverHelp)
                 description.append("<span title='Schema'>");
             description.append(db.getSchema());
