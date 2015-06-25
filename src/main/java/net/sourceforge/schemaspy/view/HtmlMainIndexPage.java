@@ -138,33 +138,21 @@ public class HtmlMainIndexPage extends HtmlFormatter {
         javascript.add("})");
 
         writeHeader(db, null, null, javascript, html);
-        html.writeln("<table width='100%'>");
-        html.writeln(" <tr><td class='container'>");
+        html.writeln("<div class=\"large-12 columns\">");
         writeGeneratedOn(db.getConnectTime(), html);
-        html.writeln(" </td></tr>");
-        html.writeln(" <tr>");
-        html.write("  <td class='container'>Database Type: ");
+        html.write("  <p>Database Type: ");
         html.write(db.getDatabaseProduct());
-        html.writeln("  </td>");
-        html.writeln("  <td class='container' align='right' valign='top' rowspan='3'>");
-        if (sourceForgeLogoEnabled())
-            html.writeln("    <a href='http://sourceforge.net' target='_blank'><img src='http://sourceforge.net/sflogo.php?group_id=137197&amp;type=1' alt='SourceForge.net' border='0' height='31' width='88'></a><br>");
-        html.writeln("    <br>");
-        html.writeln("  </td>");
-        html.writeln(" </tr>");
-        html.writeln(" <tr>");
-        html.write("  <td class='container'>");
+        html.writeln("  </p>");
         String xmlName = db.getName();
         if (db.getSchema() != null)
             xmlName += '.' + db.getSchema();
         else if (db.getCatalog() != null)
             xmlName += '.' + db.getCatalog();
-        html.write("<br><a href='" + xmlName + ".xml' title='XML Representation'>XML Representation</a>");
-        html.write("<br><a href='insertionOrder.txt' title='Useful for loading data into a database'>Insertion Order</a>&nbsp;");
-        html.write("<a href='deletionOrder.txt' title='Useful for purging data from a database'>Deletion Order</a>");
-        html.writeln("</td>");
-        html.writeln(" </tr>");
-        html.writeln("</table>");
+        html.write("<ul>");
+        html.write("<li><a href='" + xmlName + ".xml' title='XML Representation'>XML Representation</a></li>");
+        html.write("<li><a href='insertionOrder.txt' title='Useful for loading data into a database'>Insertion Order</a></li>");
+        html.write("<li><a href='deletionOrder.txt' title='Useful for purging data from a database'>Deletion Order</a></li>");
+        html.write("</ul>");
 
         html.writeln("<div class='indent'>");
         html.write("<p>");
@@ -181,7 +169,7 @@ public class HtmlMainIndexPage extends HtmlFormatter {
         html.writeln(" <label for='showComments'><input type=checkbox " + (hasComments  ? "checked " : "") + "id='showComments'>Comments</label>");
         html.writeln("</b>");
 
-        html.writeln("<table class='dataTable' border='1' rules='groups'>");
+        html.writeln("<table class='dataTable' rules='groups'>");
         int numGroups = 4 + (showIds ? 1 : 0) + (displayNumRows ? 1 : 0);
         for (int i = 0; i < numGroups; ++i)
             html.writeln("<colgroup>");

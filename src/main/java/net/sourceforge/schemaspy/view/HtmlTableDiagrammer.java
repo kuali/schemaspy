@@ -49,15 +49,15 @@ public class HtmlTableDiagrammer extends HtmlDiagramFormatter {
 
             String map = dot.generateDiagram(oneDegreeDotFile, oneDegreeDiagramFile);
 
-            html.write("<br><form action='get'><b>Close relationships");
+            html.write("<form action='get'><p>Close relationships");
             if (twoDegreesDotFile.exists()) {
-                html.writeln("</b><span class='degrees' id='degrees' title='Detail diminishes with increased separation from " + table.getName() + "'>");
-                html.write("&nbsp;within <label for='oneDegree'><input type='radio' name='degrees' id='oneDegree' checked>one</label>");
-                html.write("  <label for='twoDegrees'><input type='radio' name='degrees' id='twoDegrees'>two degrees</label> of separation");
-                html.write("</span><b>:</b>");
+                html.writeln("<span class='degrees' id='degrees' title='Detail diminishes with increased separation from " + table.getName() + "'>");
+                html.write("within &nbsp;<input type='radio' name='degrees' id='oneDegree' checked><label for='oneDegree'>one</label>");
+                html.write("  <input type='radio' name='degrees' id='twoDegrees'> <label for='twoDegrees'>two degrees</label> of separation");
+                html.write("</span>:</p>");
                 html.writeln("</form>");
             } else {
-                html.write(":</b></form>");
+                html.write(":</p></form>");
             }
             html.write(map);
             map = null;

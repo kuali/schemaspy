@@ -158,7 +158,7 @@ public class HtmlColumnsPage extends HtmlFormatter {
     private void writeHeader(Database db, int numberOfColumns, ColumnInfo selectedColumn, LineWriter html) throws IOException {
         writeHeader(db, null, "Columns", html);
 
-        html.writeln("<table width='100%' border='0'>");
+        html.writeln("<table width='100%'>");
         html.writeln("<tr><td class='container'>");
         writeGeneratedOn(db.getConnectTime(), html);
         html.writeln("</td><td class='container' rowspan='2' align='right' valign='top'>");
@@ -196,7 +196,7 @@ public class HtmlColumnsPage extends HtmlFormatter {
         boolean onColumnsPage = selectedColumn != null;
         List<String> details = null;
         out.writeln("<a name='columns'></a>");
-        out.writeln("<table id='columns' class='dataTable' border='1' rules='groups'>");
+        out.writeln("<table id='columns' class='dataTable' rules='groups'>");
 
         if (onColumnsPage) {
             details = new ArrayList<String>(Config.getInstance().getColumnDetails());

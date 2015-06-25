@@ -10,10 +10,10 @@ body  {
 
 /* background must be specified for it to propagate into diagrams */
 .content {
-  margin: 0px;
+  /*margin: 0px;*/
   background: #F7F7F7;
-  border: 0 0;
-  padding:.4em;
+  /*border: 0 0;*/
+  /*padding:.4em;*/
 }
 
 /* background-color must be specified for th to propagate into diagrams */

@@ -88,7 +88,7 @@ public class HtmlAnomaliesPage extends HtmlFormatter {
         }
 
         if (numDetected > 0) {
-            out.writeln("<table class='dataTable' border='1' rules='groups'>");
+            out.writeln("<table class='dataTable' rules='groups'>");
             out.writeln("<colgroup>");
             out.writeln("<colgroup>");
             out.writeln("<thead align='left'>");
@@ -139,7 +139,7 @@ public class HtmlAnomaliesPage extends HtmlFormatter {
         out.writeln("<li>");
         out.writeln("<b>Tables without indexes:</b>");
         if (!unindexedTables.isEmpty()) {
-            out.writeln("<table class='dataTable' border='1' rules='groups'>");
+            out.writeln("<table class='dataTable' rules='groups'>");
             out.writeln("<colgroup>");
             if (displayNumRows)
                 out.writeln("<colgroup>");
@@ -215,7 +215,7 @@ public class HtmlAnomaliesPage extends HtmlFormatter {
         out.writeln("<li>");
         out.write("<b>Tables that contain a single column:</b>");
         if (!tables.isEmpty()) {
-            out.writeln("<table class='dataTable' border='1' rules='groups'>");
+            out.writeln("<table class='dataTable' rules='groups'>");
             out.writeln("<colgroup>");
             out.writeln("<colgroup>");
             out.writeln("<thead align='left'>");

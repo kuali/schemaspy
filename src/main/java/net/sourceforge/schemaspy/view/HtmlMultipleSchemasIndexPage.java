@@ -95,7 +95,8 @@ public class HtmlMultipleSchemasIndexPage extends HtmlFormatter {
         html.writeln("</head>");
         html.writeln("<body>");
         writeTableOfContents(html);
-        html.writeln("<div class='content' style='clear:both;'>");
+        html.writeln("<div class='inner-wrap'>");
+        html.writeln("<div class=\"row\">");
         html.writeln("<div class=\"header\">");
         html.write("<h2>");
         html.write("Analysis");
