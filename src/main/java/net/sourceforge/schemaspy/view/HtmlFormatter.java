@@ -94,7 +94,7 @@ public class HtmlFormatter {
         out.writeln("<body class=\"antialiased\">");
         writeTableOfContents(out);
         out.writeln("<div class='inner-wrap'>");
-        out.writeln("<div class=\"row\">");
+        out.writeln("<div>");
         out.writeln("<div class=\"header\">");
         out.write("<h2>");
         if (table == null)

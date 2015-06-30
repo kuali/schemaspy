@@ -79,7 +79,8 @@ public class HtmlTablePage extends HtmlFormatter {
 
         writeHeader(db, table, null, out);
         out.writeln("<div class=\"row\">");
-        out.writeln("<div class=\"small-9 colums\">");
+        out.writeln("<h4>Structure:</h4>");
+        out.writeln("<div class=\"small-9 columns\">");
         writeHeader(table, hasImplied, out);
         out.writeln("</div><div class=\"small-3 columns\">");
         writeLegend(true, out);
@@ -103,10 +104,10 @@ public class HtmlTablePage extends HtmlFormatter {
     private void writeHeader(Table table, boolean hasImplied, LineWriter html) throws IOException {
         html.writeln("<form name='options' action=''>");
         if (hasImplied) {
-            html.write(" <label for='implied'><input type=checkbox id='implied'");
+            html.write(" <input type=checkbox id='implied'");
             if (table.isOrphan(false))
                 html.write(" checked");
-            html.writeln(">Implied relationships</label>");
+            html.writeln("><label for='implied'>Implied relationships</label>");
         }
 
         // initially show comments if any of the columns contain comments
@@ -118,10 +119,10 @@ public class HtmlTablePage extends HtmlFormatter {
             }
         }
 
-        html.writeln("<input type=checkbox id='showRelatedCols'> <label for='showRelatedCols'>Related columns</label>");
-        html.writeln(" <input type=checkbox id='showConstNames'> <label for='showConstNames'>Constraints</label>");
+        html.writeln("<input type=checkbox id='showRelatedCols'/> <label for='showRelatedCols'>Related columns</label>");
+        html.writeln(" <input type=checkbox id='showConstNames'/> <label for='showConstNames'>Constraints</label>");
         html.writeln(" <input type=checkbox " + (showCommentsInitially  ? "checked " : "") + "id='showComments'><label for='showComments'>Comments</label>");
-        html.writeln(" <input type=checkbox checked id='showLegend'><label for='showLegend'>Legend</label>");
+        html.writeln(" <input type=checkbox checked id='showLegend'/><label for='showLegend'>Legend</label>");
         html.writeln("</form>");
     }
 

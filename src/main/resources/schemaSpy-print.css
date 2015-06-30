@@ -1,11 +1,11 @@
 @media print {
   /* Hide the tab bar for print */
-  table#headerHolder, nav {
+  nav.top-bar {
     display: none;
   }
 
   /* Hide form fields and their labels for print */
-  label, input {
+  label, input, form {
     display: none;
   }
 
@@ -20,5 +20,18 @@
 
   .detail {
     padding: 0px 4px;
+  }
+
+  .diagram {
+    display: inherit;
+  }
+
+  #oneDegreeImg {
+    display: block;
+  }
+
+  /* Work around a Foundation pseudo class that normally inserts the link HREF value into the body text after each link in print media ( e.g. 'This is a link [linkdestination.html]') */
+  a[href]:after {
+    content:none !important;
   }
 }

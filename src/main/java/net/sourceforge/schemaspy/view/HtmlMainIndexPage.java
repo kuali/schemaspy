@@ -138,7 +138,7 @@ public class HtmlMainIndexPage extends HtmlFormatter {
         javascript.add("})");
 
         writeHeader(db, null, null, javascript, html);
-        html.writeln("<div class=\"large-12 columns\">");
+        html.writeln("<div class=\"large-12 small-4 columns\">");
         writeGeneratedOn(db.getConnectTime(), html);
         html.write("  <p>Database Type: ");
         html.write(db.getDatabaseProduct());
@@ -154,7 +154,6 @@ public class HtmlMainIndexPage extends HtmlFormatter {
         html.write("<li><a href='deletionOrder.txt' title='Useful for purging data from a database'>Deletion Order</a></li>");
         html.write("</ul>");
 
-        html.writeln("<div class='indent'>");
         html.write("<p>");
         html.write("<b>");
         if (numberOfViews == 0) {
@@ -167,7 +166,7 @@ public class HtmlMainIndexPage extends HtmlFormatter {
         }
 
         html.writeln(" <label for='showComments'><input type=checkbox " + (hasComments  ? "checked " : "") + "id='showComments'>Comments</label>");
-        html.writeln("</b>");
+        html.writeln("</b></p>");
 
         html.writeln("<table class='dataTable' rules='groups'>");
         int numGroups = 4 + (showIds ? 1 : 0) + (displayNumRows ? 1 : 0);
