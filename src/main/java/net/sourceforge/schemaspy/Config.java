@@ -121,6 +121,7 @@ public class Config
     private boolean populating = false;
     private Boolean showAnomalies;
     private Boolean showDBName;
+    private String googleAnalyticsID;
     private List<String> columnDetails;
     public static final String DOT_CHARSET = "UTF-8";
     private static final String ESCAPED_EQUALS = "\\=";
@@ -558,6 +559,19 @@ public class Config
             driverPath = pullParam("-cp");
 
         return driverPath;
+    }
+
+    public void setGoogleAnalyticsID(String googleAnalyticsID) {
+        this.googleAnalyticsID = googleAnalyticsID;
+    }
+
+    public String getGoogleAnalyticsID() {
+        if (googleAnalyticsID == null)
+            googleAnalyticsID = pullParam("-ga");
+            if (googleAnalyticsID == null)
+              googleAnalyticsID = "";
+
+        return googleAnalyticsID;
     }
 
     /**
@@ -1799,6 +1813,8 @@ public class Config
             params.add("-dp");
             params.add(value);
         }
+        params.add("-ga");
+        params.add(getGoogleAnalyticsID());
         params.add("-css");
         params.add(getCss());
         params.add("-charset");
