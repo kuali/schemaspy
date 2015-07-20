@@ -75,12 +75,12 @@
 
         <lgpl21.license.url>http://www.gnu.org/licenses/agpl-3.0.txt</lgpl21.license.url>
 
-        <scm.connection>scm:git:git://github.com/kuali/kc-schemaspy.git</scm.connection>
-        <scm.developerConnection>scm:git:git@github.com:kuali/kc-schemaspy.git</scm.developerConnection>
-        <scm.url>https://github.com/kuali/kc-schemaspy</scm.url>
+        <scm.connection>scm:git:git://github.com/kuali/schemaspy.git</scm.connection>
+        <scm.developerConnection>scm:git:git@github.com:kuali/schemaspy.git</scm.developerConnection>
+        <scm.url>https://github.com/kuali/schemaspy</scm.url>
 
         <issueManagement.system>github</issueManagement.system>
-        <issueManagement.url>https://github.com/kuali/kc-schemaspy/issues</issueManagement.url>
+        <issueManagement.url>https://github.com/kuali/schemaspy/issues</issueManagement.url>
 
         <dm.snapshotRepository.id>kualico.nexus.snapshots</dm.snapshotRepository.id>
         <dm.snapshotRepository.name>KualiCo Nexus Snapshots Repository</dm.snapshotRepository.name>
@@ -211,12 +211,12 @@
             </activation>
 
             <properties>
-                <scm.connection>scm:git:git://github.com/kualico/kc-schemaspy.git</scm.connection>
-                <scm.developerConnection>scm:git:git@github.com:kualico/kc-schemaspy.git</scm.developerConnection>
-                <scm.url>https://github.com/kualico/kc-schemaspy</scm.url>
+                <scm.connection>scm:git:git://github.com/kualico/schemaspy.git</scm.connection>
+                <scm.developerConnection>scm:git:git@github.com:kualico/schemaspy.git</scm.developerConnection>
+                <scm.url>https://github.com/kualico/schemaspy</scm.url>
 
                 <issueManagement.system>github</issueManagement.system>
-                <issueManagement.url>https://github.com/kualico/kc-schemaspy/issues</issueManagement.url>
+                <issueManagement.url>https://github.com/kualico/schemaspy/issues</issueManagement.url>
 
                 <dm.snapshotRepository.id>kualico.nexus.research.snapshots</dm.snapshotRepository.id>
                 <dm.snapshotRepository.name>KualiCo Nexus Research Snapshots Repository</dm.snapshotRepository.name>
