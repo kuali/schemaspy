@@ -4,6 +4,10 @@
 * No Changes
 
 
+##schemaspy-1508.0106
+* No Changes
+
+
 ##schemaspy-1508.0105
 * No Changes
 
