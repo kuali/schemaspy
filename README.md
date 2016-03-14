@@ -19,8 +19,7 @@ This repository contains a custom version of [SchemaSpy](http://schemaspy.source
 ## Credits and acknowledgements
 
 - The [SchemaSpy project](http://schemaspy.sourceforge.net/) and its creator, John Currier
-- [Kuali](https://github.com/kuali/schemaspy)
-- [Placeholder.js), who forked the original project and packaged it as a Maven artefact
+- [Kuali](https://github.com/kuali/schemaspy), who forked the original project and packaged it as a Maven artefact
 - Foundation and its components:
  - [Placeholder.js](http://mths.be/placeholder) - MIT licence
  - [Normalize.css](https://github.com/necolas/normalize.css) - MIT licence
