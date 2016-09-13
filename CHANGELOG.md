@@ -4,6 +4,10 @@
 * No Changes
 
 
+##schemaspy-1511.0001
+* No Changes
+
+
 ##schemaspy-1508.0162
 * No Changes
 
@@ -701,19 +705,19 @@
 
 
 ##schemaspy-1504.1
-*  normalizing whitespace for release plugin
+* normalizing whitespace for release plugin
   * Travis Schneberger on Tue, 28 Apr 2015 08:45:15 -0400 [View Commit](../../commit/7e923cf1009be0a6b2bad5f8498ef8b1bab63721)
-*  Prepare SchmeaSpy for public release
+* Prepare SchmeaSpy for public release
   * Travis Schneberger on Tue, 28 Apr 2015 07:56:48 -0400 [View Commit](../../commit/08dc9653e82271052af4386e200162b42bb06f46)
-*  jenkins improvements
+* jenkins improvements
   * Travis Schneberger on Fri, 20 Mar 2015 13:17:49 -0400 [View Commit](../../commit/04d8abfa3be4451e52e9134567635d842fc8dfec)
-*  next iteration
+* next iteration
   * Travis Schneberger on Wed, 18 Mar 2015 16:56:18 -0400 [View Commit](../../commit/c180666761c4a694ac4c057ad0f15c1f4ead09d1)
 
 ##schemaspy-5.0.1
-*  adding kualiCo support
+* adding kualiCo support
   * Travis Schneberger on Wed, 18 Mar 2015 16:52:42 -0400 [View Commit](../../commit/7c16be7920a279f22cecba70b8eed58edaeb8a3c)
-*  adding support to switch format
+* adding support to switch format
   * Travis Schneberger on Wed, 18 Mar 2015 16:22:17 -0400 [View Commit](../../commit/d10b92b8b861b522226bf84a564b6701d2d13e1a)
 * It turns out that the "anomaly" of nullable primary keys that must be unique is actually in the SQL standard and isn't an anomaly at all.  * johncurrier on Fri, 27 Jun 2014 20:47:09 +0000 [View Commit](../../commit/b1521aa3d309e6bec966705bfd05b29f3dc4710f)
 * Corrected problem where View Definition label was rendered to the right of the view's definition  * johncurrier on Fri, 27 Jun 2014 20:37:47 +0000 [View Commit](../../commit/81b20208af3731977535ab86860b048d2b21333a)
