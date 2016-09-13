@@ -30,6 +30,7 @@ public class VersionTest extends TestCase {
     private final Version twoTen = new Version("2.10");
     private final Version twoTenOne = new Version("2.10.1");
 
+    @SuppressWarnings("SelfComparison")
     public void testCompareTo() {
         assertTrue(twoNineOne.compareTo(twoTen) < 0);
         assertTrue(twoTen.compareTo(twoTen) == 0);
@@ -44,6 +45,7 @@ public class VersionTest extends TestCase {
         assertTrue(twoTenOne.compareTo(twoNineOne) > 0);
     }
 
+    @SuppressWarnings("SelfEquals")
     public void testEquals() {
         assertTrue(twoTen.equals(twoTen));
     }
