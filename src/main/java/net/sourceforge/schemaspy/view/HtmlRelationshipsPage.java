@@ -158,14 +158,14 @@ public class HtmlRelationshipsPage extends HtmlDiagramFormatter {
             if (!hasRealRelationships)
                 html.write("style=\"display:none\" ");
             html.writeln("title=\"Show relationships implied by column name/type/size matching another table's primary key\">");
-            html.write("    <label for='implied'><input type='checkbox' id='implied'" + (hasRealRelationships ? "" : " checked" ) + '>');
-            html.writeln("Implied relationships</label>");
+            html.write("    <input type='checkbox' id='implied'" + (hasRealRelationships ? "" : " checked" ) + '>');
+            html.writeln("<label for='implied'>Implied relationships</label>");
             html.writeln("  </span>");
         }
         if (hasRealRelationships || hasImpliedRelationships) {
             html.writeln("  <span title=\"By default only columns that are primary keys, foreign keys or indexes are shown\">");
-            html.write("    <label for='showNonKeys'><input type='checkbox' id='showNonKeys'>");
-            html.writeln("All columns</label>");
+            html.write("    <input type='checkbox' id='showNonKeys'>");
+            html.writeln("<label for='showNonKeys'>All columns</label>");
             html.writeln("  </span>");
         }
         html.writeln("</form>");

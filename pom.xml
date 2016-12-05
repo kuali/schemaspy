@@ -105,6 +105,7 @@
                     <encoding>${project.encoding}</encoding>
                     <debug>true</debug>
                     <debuglevel>source,lines</debuglevel>
+                    <compilerArgument>-Xlint:unchecked</compilerArgument>
                 </configuration>
             </plugin>
             <plugin>

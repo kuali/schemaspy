@@ -119,6 +119,9 @@ public class Config
     private boolean hasOrphans = false;
     private boolean hasRoutines = false;
     private boolean populating = false;
+    private Boolean showAnomalies;
+    private Boolean showDBName;
+    private String googleAnalyticsID;
     private List<String> columnDetails;
     public static final String DOT_CHARSET = "UTF-8";
     private static final String ESCAPED_EQUALS = "\\=";
@@ -558,6 +561,19 @@ public class Config
         return driverPath;
     }
 
+    public void setGoogleAnalyticsID(String googleAnalyticsID) {
+        this.googleAnalyticsID = googleAnalyticsID;
+    }
+
+    public String getGoogleAnalyticsID() {
+        if (googleAnalyticsID == null)
+            googleAnalyticsID = pullParam("-ga");
+            if (googleAnalyticsID == null)
+              googleAnalyticsID = "";
+
+        return googleAnalyticsID;
+    }
+
     /**
      * The filename of the cascading style sheet to use.
      * Note that this file is parsed and used to determine characteristics
@@ -786,6 +802,37 @@ public class Config
             encodeCommentsEnabled = !options.remove("-ahic");
 
         return encodeCommentsEnabled;
+    }
+
+
+    /**
+     * Show DB structure anomalies. Defaults to false.
+     */
+    public void setAnomaliesEnabled(boolean enabled) {
+        showAnomalies = enabled;
+    }
+
+    public boolean isAnomaliesEnabled() {
+        if (showAnomalies == null)
+            showAnomalies = !options.remove("-showanomalies");
+
+        return showAnomalies;
+
+    }
+
+    /**
+     * Show the database name in descriptions/titles. Defaults to false.
+     */
+    public void setDBNameEnabled(boolean enabled) {
+        showDBName = enabled;
+    }
+
+    public boolean isDBNameEnabled() {
+        if (showDBName == null)
+            showDBName = !options.remove("-showdbname");
+
+        return showDBName;
+
     }
 
     /**
@@ -1756,12 +1803,18 @@ public class Config
             params.add("-sso");
         if (isSchemaDisabled())
             params.add("-noschema");
+        if(isAnomaliesEnabled())
+            params.add("-showanomalies");
+        if(isDBNameEnabled())
+            params.add("-showdbname");
 
         String value = getDriverPath();
         if (value != null) {
             params.add("-dp");
             params.add(value);
         }
+        params.add("-ga");
+        params.add(getGoogleAnalyticsID());
         params.add("-css");
         params.add(getCss());
         params.add("-charset");

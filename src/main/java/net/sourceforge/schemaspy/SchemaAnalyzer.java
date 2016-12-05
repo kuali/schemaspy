@@ -258,8 +258,11 @@ public class SchemaAnalyzer {
                 logger.info("Writing/graphing summary");
 
                 ImageWriter.getInstance().writeImages(outputDir);
-                ResourceWriter.getInstance().writeResource("/jquery.js", new File(outputDir, "/jquery.js"));
-                ResourceWriter.getInstance().writeResource("/schemaSpy.js", new File(outputDir, "/schemaSpy.js"));
+                ResourceWriter.getInstance().writeResource("/js/vendor/jquery.js", new File(outputDir, "/js/vendor/jquery.js"));
+                ResourceWriter.getInstance().writeResource("/js/schemaspy/schemaSpy.js", new File(outputDir, "/js/schemaspy/schemaSpy.js"));
+                ResourceWriter.getInstance().writeResource("/css/normalize.css", new File(outputDir, "/css/normalize.css"));
+                ResourceWriter.getInstance().writeResource("/css/foundation.css", new File(outputDir, "/css/foundation.css"));
+                ResourceWriter.getInstance().writeResource("/schemaSpy-print.css", new File(outputDir, "/schemaSpy-print.css"));
 
                 progressListener.graphingSummaryProgressed();
 

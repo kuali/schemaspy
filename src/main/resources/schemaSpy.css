@@ -10,17 +10,16 @@ body  {
 
 /* background must be specified for it to propagate into diagrams */
 .content {
-  margin: 0px;
+  /*margin: 0px;*/
   background: #F7F7F7;
-  border: 0 0;
-  padding:.4em;
+  /*border: 0 0;*/
+  /*padding:.4em;*/
 }
 
 /* background-color must be specified for th to propagate into diagrams */
 th {
-  background-color: #9BAB96;
+  background-color: #f5f5f5;
   text-align: left;
-  padding: 0px 4px;
 }
 
 /* background-color must be specified for td to propagate into diagrams */
@@ -35,26 +34,22 @@ tr.odd td.detail {
   background-color: #F7F7F7;
 }
 
-h1 {
-  font-size: 125%;
-}
-
 /* background must be specified for .primaryKey to propagate into diagrams */
 .primaryKey {
-  background: #BED1B8;
-  padding: 0px 4px;
+  background: #9CCFE0;
+  font-weight: bold;
 }
 
 /* background must be specified for .indexedColumn to propagate into diagrams */
 .indexedColumn {
   background: #F4F7DA;
-  padding: 0px 4px;
+
 }
 
 /* background must be specified for .excludedColumn to propagate into diagrams */
 .excludedColumn {
   background: #C0C0C0;
-  padding: 0px 4px;
+
 }
 
 /* background must be specified for .selectedTable to propagate into diagrams */
@@ -62,9 +57,6 @@ h1 {
   background: #A9AB96;
 }
 
-.detail {
-  padding: 0px 4px;
-}
 
 table {
   border-style: none;
@@ -85,14 +77,6 @@ table {
 .heading {
   background: transparent;
   padding: 8px 0px;
-}
-
-.header {
-  color: #000000;
-  background: transparent;
-  font-weight: bold;
-  font-size: 130%;
-  text-align: left;
 }
 
 .description {
@@ -140,9 +124,7 @@ table {
 }
 
 .comment {
-  display: none;
   text-align: left;
-  padding: 0px 4px;
 }
 
 .impliedNotOrphan {
@@ -164,20 +146,12 @@ table {
   padding: 2px;
 }
 
-a:link {
-  color: #489148;
-}
-
-a:visited {
-  color: #183118;
-}
-
 .sortedByColumn {
-  background-color: #6C7769;
+  text-decoration: underline;
 }
 
 .notSortedByColumn {
-  color: #000000;
+  text-decoration: none;
 }
 
 .viewDefinition {
@@ -202,76 +176,4 @@ div.spacer {
 
 .preFormatted {
   white-space: pre;
-}
-
-/* Tabs from http://www.alistapart.com/articles/slidingdoors/ */
-
-/* resolve an issue with always having a scrollbar for #header */
-#headerHolder {
-  width: 100%;
-  margin: 0;
-  border: 1px solid black;
-  border-bottom-style: none;
-}
-
-#header {
-  float:left;
-  width: 100%;
-  background:#BED1B8 url("images/background.gif") repeat-x bottom;
-  font-size:80%;
-  line-height:normal;
-}
-
-#header ul {
-  margin:0;
-  padding:10px 10px 0;
-  list-style:none;
-}
-
-#header li {
-  float:left;
-  background:url("images/tabLeft.gif") no-repeat left top;
-  margin:0;
-  padding:0 0 0 9px;
-  border-bottom:1px solid #000;
-}
-
-#header a {
-  float:left;
-  display:block;
-  width:.1em;
-  background:url("images/tabRight.gif") no-repeat right top;
-  padding:5px 10px 4px 1px;
-  text-decoration:none;
-  font-weight:bold;
-  color:#F4F7DA;
-}
-
-#header > ul a {width:auto;}
-/* Commented Backslash Hack hides rule from IE5-Mac \*/
-#header a {float:none;}
-/* End IE5-Mac hack */
-
-#header a:hover {
-  color:#333;
-}
-
-#header #current {
-  background-position:0 -150px;
-  border-width:0;
-}
-
-#header #current a {
-  background-position:100% -150px;
-  padding-bottom:5px;
-  color:#000;
-}
-
-#header li:hover, #header li:hover a {
-  background-position:0% -150px;
-  color:#9BAB96;
-}
-
-#header li:hover a {
-  background-position:100% -150px;
 }

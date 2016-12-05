@@ -3,7 +3,7 @@ var table = null;
 
 // sync target's visibility with the state of checkbox
 function sync(cb, target) {
-  var checked = cb.attr('checked');
+  var checked = cb.prop('checked');
   var displayed = target.css('display') != 'none';
   if (checked != displayed) {
     if (checked)
@@ -15,7 +15,7 @@ function sync(cb, target) {
 
 // sync target's visibility with the inverse of the state of checkbox
 function unsync(cb, target) {
-  var checked = cb.attr('checked');
+  var checked = cb.prop('checked');
   var displayed = target.css('display') != 'none';
   if (checked == displayed) {
     if (checked)
@@ -35,7 +35,7 @@ function associate(cb, target) {
 
 // select the appropriate image based on the options selected
 function syncImage() {
-  var implied   = $('#implied').attr('checked');
+  var implied   = $('#implied').prop('checked');
 
   $('.diagram').hide();
 
@@ -43,7 +43,7 @@ function syncImage() {
     if (implied && $('#impliedTwoDegreesImg').size() > 0) {
       $('#impliedTwoDegreesImg').show();
     } else {
-      var oneDegree = $('#oneDegree').attr('checked');
+      var oneDegree = $('#oneDegree').prop('checked');
 
       if (oneDegree || $('#twoDegreesImg').size() == 0) {
         $('#oneDegreeImg').show();
@@ -52,7 +52,7 @@ function syncImage() {
       }
     }
   } else {
-    var showNonKeys = $('#showNonKeys').attr('checked');
+    var showNonKeys = $('#showNonKeys').prop('checked');
 
     if (implied) {
       if (showNonKeys && $('#impliedLargeImg').size() > 0) {

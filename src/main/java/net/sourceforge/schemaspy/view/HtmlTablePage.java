@@ -78,19 +78,24 @@ public class HtmlTablePage extends HtmlFormatter {
         boolean hasImplied = generateDots(table, diagramsDir, stats);
 
         writeHeader(db, table, null, out);
-        out.writeln("<table width='100%' border='0'>");
-        out.writeln("<tr valign='top'><td class='container' align='left' valign='top'>");
+        out.writeln("<div class=\"row\">");
+        out.writeln("<h4>Structure:</h4>");
+        out.writeln("<div class=\"small-9 columns\">");
         writeHeader(table, hasImplied, out);
-        out.writeln("</td><td class='container' rowspan='2' align='right' valign='top'>");
+        out.writeln("</div><div class=\"small-3 columns\">");
         writeLegend(true, out);
-        out.writeln("</td><tr valign='top'><td class='container' align='left' valign='top'>");
+        out.writeln("</div></div><div class=\"row\">");
         writeMainTable(table, out);
         writeNumRows(db, table, out);
-        out.writeln("</td></tr></table>");
+        out.writeln("</div><div class=\"row\">");
         writeCheckConstraints(table, out);
+        out.writeln("</div><div class=\"row\">");
         writeIndexes(table, out);
+        out.writeln("</div><div class=\"row\">");
         writeView(table, db, out);
+        out.writeln("</div><div class=\"row\">");
         writeDiagram(table, stats, diagramsDir, out);
+        out.writeln("</div>");
         writeFooter(out);
 
         return stats;
@@ -99,10 +104,10 @@ public class HtmlTablePage extends HtmlFormatter {
     private void writeHeader(Table table, boolean hasImplied, LineWriter html) throws IOException {
         html.writeln("<form name='options' action=''>");
         if (hasImplied) {
-            html.write(" <label for='implied'><input type=checkbox id='implied'");
+            html.write(" <input type=checkbox id='implied'");
             if (table.isOrphan(false))
                 html.write(" checked");
-            html.writeln(">Implied relationships</label>");
+            html.writeln("><label for='implied'>Implied relationships</label>");
         }
 
         // initially show comments if any of the columns contain comments
@@ -114,10 +119,10 @@ public class HtmlTablePage extends HtmlFormatter {
             }
         }
 
-        html.writeln(" <label for='showRelatedCols'><input type=checkbox id='showRelatedCols'>Related columns</label>");
-        html.writeln(" <label for='showConstNames'><input type=checkbox id='showConstNames'>Constraints</label>");
-        html.writeln(" <label for='showComments'><input type=checkbox " + (showCommentsInitially  ? "checked " : "") + "id='showComments'>Comments</label>");
-        html.writeln(" <label for='showLegend'><input type=checkbox checked id='showLegend'>Legend</label>");
+        html.writeln("<input type=checkbox id='showRelatedCols'/> <label for='showRelatedCols'>Related columns</label>");
+        html.writeln(" <input type=checkbox id='showConstNames'/> <label for='showConstNames'>Constraints</label>");
+        html.writeln(" <input type=checkbox " + (showCommentsInitially  ? "checked " : "") + "id='showComments'><label for='showComments'>Comments</label>");
+        html.writeln(" <input type=checkbox checked id='showLegend'/><label for='showLegend'>Legend</label>");
         html.writeln("</form>");
     }
 
@@ -312,9 +317,8 @@ public class HtmlTablePage extends HtmlFormatter {
     private void writeCheckConstraints(Table table, LineWriter out) throws IOException {
         Map<String, String> constraints = table.getCheckConstraints();
         if (constraints != null && !constraints.isEmpty()) {
-            out.writeln("<div class='indent'>");
-            out.writeln("<b>Requirements (check constraints):</b>");
-            out.writeln("<table class='dataTable' border='1' rules='groups'><colgroup><colgroup>");
+            out.writeln("<h4>Requirements (check constraints):</h4>");
+            out.writeln("<table class='dataTable' rules='groups'><colgroup><colgroup>");
             out.writeln("<thead>");
             out.writeln(" <tr>");
             out.writeln("  <th>Constraint</th>");
@@ -333,7 +337,7 @@ public class HtmlTablePage extends HtmlFormatter {
                 out.writeln(" </tr>");
             }
             out.writeln("</tbody>");
-            out.writeln("</table></div><p>");
+            out.writeln("</table><p>");
         }
     }
 
@@ -341,9 +345,8 @@ public class HtmlTablePage extends HtmlFormatter {
         boolean showId = table.getId() != null;
         Set<TableIndex> indexes = table.getIndexes();
         if (indexes != null && !indexes.isEmpty()) {
-            out.writeln("<div class='indent'>");
-            out.writeln("<b>Indexes:</b>");
-            out.writeln("<table class='dataTable' border='1' rules='groups'><colgroup><colgroup><colgroup><colgroup>" + (showId ? "<colgroup>" : ""));
+            out.writeln("<h4>Indexes:</h4>");
+            out.writeln("<table class='dataTable' rules='groups'><colgroup><colgroup><colgroup><colgroup>" + (showId ? "<colgroup>" : ""));
             out.writeln("<thead>");
             out.writeln(" <tr>");
             if (showId)
@@ -401,7 +404,6 @@ public class HtmlTablePage extends HtmlFormatter {
             }
             out.writeln("</tbody>");
             out.writeln("</table>");
-            out.writeln("</div>");
         }
     }
 
@@ -509,12 +511,12 @@ public class HtmlTablePage extends HtmlFormatter {
 
     private void writeDiagram(Table table, WriteStats stats, File diagramsDir, LineWriter html) throws IOException {
         if (table.getMaxChildren() + table.getMaxParents() > 0) {
-            html.writeln("<table width='100%' border='0'><tr><td class='container'>");
+            html.writeln("<h4>Relationships:</h4>");
             if (HtmlTableDiagrammer.getInstance().write(table, diagramsDir, html)) {
-                html.writeln("</td></tr></table>");
+
                 writeExcludedColumns(stats.getExcludedColumns(), table, html);
             } else {
-                html.writeln("</td></tr></table><p>");
+
                 writeInvalidGraphvizInstallation(html);
             }
         }

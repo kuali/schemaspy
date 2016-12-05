@@ -36,27 +36,50 @@ import net.sourceforge.schemaspy.util.LineWriter;
 
 public class HtmlFormatter {
     protected final boolean encodeComments = Config.getInstance().isEncodeCommentsEnabled();
+    protected final boolean showAnomalies = Config.getInstance().isAnomaliesEnabled();
     private   final boolean isMetered = Config.getInstance().isMeterEnabled();
     protected final boolean displayNumRows = Config.getInstance().isNumRowsEnabled();
+    protected final boolean showDBName = Config.getInstance().isDBNameEnabled();
+    protected final String googleAnalyticsID = Config.getInstance().getGoogleAnalyticsID();
 
     protected HtmlFormatter() {
     }
 
     protected void writeHeader(Database db, Table table, String text, List<String> javascript, LineWriter out) throws IOException {
-        out.writeln("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>");
+        out.writeln("<!DOCTYPE html>");
+        out.writeln("<!--[if IE 9]><html class=\"lt-ie10\" lang=\"en\" > <![endif]-->");
         out.writeln("<html>");
         out.writeln("<head>");
         out.writeln("  <!-- SchemaSpy rev " + new Revision() + " -->");
-        out.write("  <title>SchemaSpy - ");
+        out.write("  <title>");
         out.write(getDescription(db, table, text, false));
         out.writeln("</title>");
+
         out.write("  <link rel=stylesheet href='");
         if (table != null)
             out.write("../");
         out.writeln("schemaSpy.css' type='text/css'>");
+
+        out.write("  <link rel=stylesheet href='");
+        if (table != null)
+            out.write("../");
+        out.writeln("schemaSpy-print.css' type='text/css'>");
+
+        out.write("  <link rel=stylesheet href='");
+        if (table != null)
+            out.write("../");
+        out.writeln("css/normalize.css' type='text/css'>");
+
+        out.write("  <link rel=stylesheet href='");
+        if (table != null)
+            out.write("../");
+        out.writeln("css/foundation.css' type='text/css'>");
+
         out.writeln("  <meta HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=" + Config.getInstance().getCharset() + "'>");
-        out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript' SRC='" + (table == null ? "" : "../") + "jquery.js'></SCRIPT>");
-        out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript' SRC='" + (table == null ? "" : "../") + "schemaSpy.js'></SCRIPT>");
+        out.writeln("  <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
+        out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript' SRC='" + (table == null ? "" : "../") + "js/vendor/jquery.js'></SCRIPT>");
+        out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript' SRC='" + (table == null ? "" : "../") + "js/schemaspy/schemaSpy.js'></SCRIPT>");
+        out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript' SRC='http://code.jquery.com/jquery-migrate-1.2.1.js'></SCRIPT>");
         if (table != null) {
             out.writeln("  <SCRIPT LANGUAGE='JavaScript' TYPE='text/javascript'>");
             out.writeln("    table='" + table + "';");
@@ -68,20 +91,23 @@ public class HtmlFormatter {
                 out.writeln("    " + line);
             out.writeln("  </SCRIPT>");
         }
+        if((googleAnalyticsID != null) && (googleAnalyticsID.length() > 0))
+        {
+          out.writeln("<script language=\"JavaScript\" type=\"text/javascript\">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');  ga('create', '" + googleAnalyticsID + "', 'auto');  ga('send', 'pageview');</script>");
+        }
         out.writeln("</head>");
-        out.writeln("<body>");
+        out.writeln("<body class=\"antialiased\">");
         writeTableOfContents(out);
-        out.writeln("<div class='content' style='clear:both;'>");
-        out.writeln("<table width='100%' border='0' cellpadding='0'>");
-        out.writeln(" <tr>");
-        out.write("  <td class='heading' valign='middle'>");
-        out.write("<span class='header'>");
+        out.writeln("<div class='inner-wrap'>");
+        out.writeln("<div>");
+        out.writeln("<div class=\"header\">");
+        out.write("<h2>");
         if (table == null)
-            out.write("SchemaSpy Analysis of ");
+            out.write("Analysis of ");
         out.write(getDescription(db, table, text, true));
-        out.write("</span>");
+        out.write("</h2>");
         if (table == null && db.getDescription() != null)
-            out.write("<span class='description'>" + db.getDescription().replace("\\=", "=") + "</span>");
+            out.write("<h3>" + db.getDescription().replace("\\=", "=") + "</h3>");
 
         String comments = table == null ? null : table.getComments();
         if (comments != null) {
@@ -93,10 +119,7 @@ public class HtmlFormatter {
                 out.write(comments);
             out.writeln("</div><p>");
         }
-        out.writeln("</td>");
-        out.writeln("  <td class='heading' align='right' valign='top' title='John Currier - Creator of Cool Tools'><span class='indent'>Generated by</span><br><span class='indent'><span class='signature'><a href='http://schemaspy.sourceforge.net' target='_blank'>SchemaSpy</a></span></span></td>");
-        out.writeln(" </tr>");
-        out.writeln("</table>");
+        out.writeln("</div>");
     }
 
     /**
@@ -117,25 +140,27 @@ public class HtmlFormatter {
         // don't forget to modify HtmlMultipleSchemasIndexPage with any changes to 'header' or 'headerHolder'
         Config config = Config.getInstance();
         String path = getPathToRoot();
-        // have to use a table to deal with a horizontal scrollbar showing up inappropriately
-        html.writeln("<table id='headerHolder' cellspacing='0' cellpadding='0'><tr><td>");
-        html.writeln("<div id='header'>");
-        html.writeln(" <ul>");
+        html.writeln("<nav class=\"top-bar\" data-topbar role=\"navigation\">");
+        html.writeln("<section class=\"top-bar-section\">");
+        html.writeln("<ul class=\"left\">");
+        //html.writeln("<dt>Navigation:</dt>");
+
         if (config.isOneOfMultipleSchemas())
             html.writeln("  <li><a href='" + path + "../index.html' title='All Schemas Evaluated'>Schemas</a></li>");
-        html.writeln("  <li" + (isMainIndex() ? " id='current'" : "") + "><a href='" + path + "index.html' title='All tables and views in the schema'>Tables</a></li>");
-        html.writeln("  <li" + (isRelationshipsPage() ? " id='current'" : "") + "><a href='" + path + "relationships.html' title='Diagram of table relationships'>Relationships</a></li>");
+        html.writeln("  <li" + (isMainIndex() ? " class='active'" : "") + "><a href='" + path + "index.html' title='All tables and views in the schema'>Tables</a></li>");
+        html.writeln("  <li" + (isRelationshipsPage() ? " class='active'" : "") + "><a href='" + path + "relationships.html' title='Diagram of table relationships'>Relationships</a></li>");
         if (config.hasOrphans())
-            html.writeln("  <li" + (isOrphansPage() ? " id='current'" : "") + "><a href='" + path + "utilities.html' title='View of tables with neither parents nor children'>Utility&nbsp;Tables</a></li>");
-        html.writeln("  <li" + (isConstraintsPage() ? " id='current'" : "") + "><a href='" + path + "constraints.html' title='Useful for diagnosing error messages that just give constraint name or number'>Constraints</a></li>");
-        html.writeln("  <li" + (isAnomaliesPage() ? " id='current'" : "") + "><a href='" + path + "anomalies.html' title=\"Things that might not be quite right\">Anomalies</a></li>");
-        html.writeln("  <li" + (isColumnsPage() ? " id='current'" : "") + "><a href='" + path + HtmlColumnsPage.getInstance().getColumnInfos().get("column") + "' title=\"All of the columns in the schema\">Columns</a></li>");
+            html.writeln("  <li" + (isOrphansPage() ? " class='active'" : "") + "><a href='" + path + "utilities.html' title='View of tables with neither parents nor children'>Utility&nbsp;Tables</a></li>");
+        html.writeln("  <li" + (isConstraintsPage() ? " class='active'" : "") + "><a href='" + path + "constraints.html' title='Useful for diagnosing error messages that just give constraint name or number'>Constraints</a></li>");
+        if(showAnomalies)
+          html.writeln("  <li" + (isAnomaliesPage() ? " class='active'" : "") + "><a href='" + path + "anomalies.html' title=\"Things that might not be quite right\">Anomalies</a></li>");
+        html.writeln("  <li" + (isColumnsPage() ? " class='active'" : "") + "><a href='" + path + HtmlColumnsPage.getInstance().getColumnInfos().get("column") + "' title=\"All of the columns in the schema\">Columns</a></li>");
         if (config.hasRoutines())
             html.writeln("  <li" + (isRoutinesPage() ? " id='current'" : "") + "><a href='" + path + "routines.html' title='Stored Procedures / Functions'>Routines</a></li>");
-        html.writeln("  <li><a href='http://sourceforge.net/donate/index.php?group_id=137197' title='Please help keep SchemaSpy alive' target='_blank'>Donate</a></li>");
         html.writeln(" </ul>");
-        html.writeln("</div>");
-        html.writeln("</td></tr></table>");
+        html.writeln(" </section>");
+        html.writeln(" </nav>");
+
     }
 
     protected String getDescription(Database db, Table table, String text, boolean hoverHelp) {
@@ -146,13 +171,17 @@ public class HtmlFormatter {
             else
                 description.append("Table ");
         }
-        if (hoverHelp)
-            description.append("<span title='Database'>");
-        description.append(db.getName());
-        if (hoverHelp)
-            description.append("</span>");
+        if(showDBName) {
+          if (hoverHelp)
+              description.append("<span title='Database'>");
+          description.append(db.getName());
+          if (hoverHelp)
+              description.append("</span>");
+        }
+
         if (db.getSchema() != null) {
-            description.append('.');
+            if(showDBName)
+                description.append('.');
             if (hoverHelp)
                 description.append("<span title='Schema'>");
             description.append(db.getSchema());
@@ -191,14 +220,14 @@ public class HtmlFormatter {
     }
 
     protected void writeLegend(boolean tableDetails, boolean diagramDetails, LineWriter out) throws IOException {
-        out.writeln(" <table class='legend' border='0'>");
+        out.writeln(" <table class='legend'>");
         out.writeln("  <tr>");
         out.writeln("   <td class='dataTable' valign='bottom'>Legend:</td>");
         if (sourceForgeLogoEnabled())
             out.writeln("   <td class='container' align='right' valign='top'><a href='http://sourceforge.net' target='_blank'><img src='http://sourceforge.net/sflogo.php?group_id=137197&amp;type=1' alt='SourceForge.net' border='0' height='31' width='88'></a></td>");
         out.writeln("  </tr>");
         out.writeln("  <tr><td class='container' colspan='2'>");
-        out.writeln("   <table class='dataTable' border='1'>");
+        out.writeln("   <table class='dataTable'>");
         out.writeln("    <tbody>");
         out.writeln("    <tr><td class='primaryKey'>Primary key columns</td></tr>");
         out.writeln("    <tr><td class='indexedColumn'>Columns with indexes</td></tr>");
@@ -258,19 +287,9 @@ public class HtmlFormatter {
     }
 
     protected void writeFooter(LineWriter html) throws IOException {
-        html.writeln("</div>");
-        if (isMetered) {
-            html.writeln("<span style='float: right;' title='This link is only on the SchemaSpy sample pages'>");
-            html.writeln("<!-- Site Meter -->");
-            html.writeln("<script type='text/javascript' src='http://s28.sitemeter.com/js/counter.js?site=s28schemaspy'>");
-            html.writeln("</script>");
-            html.writeln("<noscript>");
-            html.writeln("<a href='http://s28.sitemeter.com/stats.asp?site=s28schemaspy' target='_top'>");
-            html.writeln("<img src='http://s28.sitemeter.com/meter.asp?site=s28schemaspy' alt='Site Meter' border='0'/></a>");
-            html.writeln("</noscript>");
-            html.writeln("<!-- Copyright (c)2006 Site Meter -->");
-            html.writeln("</span>");
-        }
+        html.writeln("<footer><p class=\"credit\">Generated by <a href=\"http://schemaspy.sourceforge.net/\">SchemaSpy</a></p></footer>");
+        html.writeln("</div>"); // for the div class 'row'
+        html.writeln("</div>"); // for the div class 'inner-wrap'
         html.writeln("</body>");
         html.writeln("</html>");
     }
